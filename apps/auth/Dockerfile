@@ -10,13 +10,15 @@ COPY yarn.lock ./
 COPY tsconfig.json tsconfig.json
 COPY nest-cli.json nest-cli.json
 
-# Install dependencies
-RUN yarn install
-
 # Copy the rest of the application code
-COPY . .
+COPY apps/auth apps/auth
+COPY libs libs
 
-RUN yarn build
+# Install dependencies recursively
+RUN yarn install -r
+
+# Build the application
+RUN yarn build auth
 
 # Production
 FROM node:alpine as production
