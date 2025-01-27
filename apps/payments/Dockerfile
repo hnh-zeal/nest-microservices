@@ -10,12 +10,15 @@ COPY yarn.lock ./
 COPY tsconfig.json tsconfig.json
 COPY nest-cli.json nest-cli.json
 
+# Install dependencies
+RUN yarn install
+
 # Copy the rest of the application code
 COPY apps/payments apps/payments
 COPY libs libs
 
-# Install dependencies recursively
-RUN yarn install -r
+# Install the dependencies for the payments service
+RUN cd apps/payments && yarn install
 
 # Build the application
 RUN yarn build payments

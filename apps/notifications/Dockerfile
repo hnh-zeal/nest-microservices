@@ -10,12 +10,15 @@ COPY yarn.lock ./
 COPY tsconfig.json tsconfig.json
 COPY nest-cli.json nest-cli.json
 
+# Install dependencies
+RUN yarn install
+
 # Copy the rest of the application code
 COPY apps/notifications apps/notifications
 COPY libs libs
 
-# Install dependencies recursively
-RUN yarn install -r
+# Install the dependencies for the notifications service
+RUN cd apps/notifications && yarn install
 
 # Build the application
 RUN yarn build notifications

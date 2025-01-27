@@ -10,12 +10,15 @@ COPY yarn.lock ./
 COPY tsconfig.json tsconfig.json
 COPY nest-cli.json nest-cli.json
 
+# Install dependencies
+RUN yarn install
+
 # Copy the rest of the application code
 COPY apps/reservations apps/reservations
 COPY libs libs
 
-# Install dependencies recursively
-RUN yarn install -r
+# Install the dependencies for the reservations service
+RUN cd apps/reservations && yarn install
 
 # Build the application
 RUN yarn build reservations
