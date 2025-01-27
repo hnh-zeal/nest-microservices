@@ -70,3 +70,13 @@ steps:
         'push',
         'asia-southeast1-docker.pkg.dev/nest-microservices-448914/payments/production',
       ]
+
+# Optional: Set logs bucket and logging behavior
+logsBucket: gs://your-logs-bucket-name
+
+options:
+  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
+  logging: CLOUD_LOGGING_ONLY
+
+# Optional: Specify a service account if needed
+serviceAccount: 865801919016-compute@developer.gserviceaccount.com
