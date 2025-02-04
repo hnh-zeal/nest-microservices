@@ -17,7 +17,8 @@
     "bcryptjs": "^2.4.3",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "semver": "^7.7.1"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
